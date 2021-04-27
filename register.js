@@ -28,7 +28,7 @@ function login() {
 }
 function logout() {
     currentUser="";
-    $("#footer").css("position", "absolute");
+    // $("#footer").css("position", "absolute");
     document.getElementById("current_user").innerHTML = "Hello";
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
@@ -44,7 +44,7 @@ function logout() {
 
 function settingsWindow() {
 
-    $("#footer").css("position", "relative");
+    // $("#footer").css("position", "relative");
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
     document.getElementById("game").style.display = "none";
