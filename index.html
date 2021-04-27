@@ -126,11 +126,11 @@
 
 		<div class = "container">
 			<form id = "settings" action="" method="post" name="settings" style="display: none; width: auto;">
-				<h2 align="center"> Game Settings</h2>
+				<h1 align="center"> Game Settings</h1>
 				<br>
 				<div>
 					<div class="box_keybtn" align="center">
-						<h3 align="center"> select key directions: </h3>
+						<h2 align="center"> select key directions: </h2>
 						<br>
 						<div>
 							<img for="up" src="images1/up.png" style= "align-items: center;">
@@ -163,7 +163,7 @@
 					</div>
 					<br>
 					<div>
-						<h3 style ="float: left;";>Select time in seconds: </h3>
+						<h2 style ="float: left;";>Select time in seconds: </h2>
 						<span id="rangeValue1" onchange="changeTime(this.value)">60</span>
 						<Input id="timeRange" class="range" type="range" value="60" min="60" max="1000" onchange="rangeValue1(this.value)" onmousemove="rangeSlide1(this.value)">
 					</div>
@@ -171,7 +171,7 @@
 				</br>
 				</br>
 					<div>
-						<h3 style ="float: left;";>Select number of monsters: </h3>
+						<h2 style ="float: left;";>Select number of monsters: </h2>
 						<span id="rangeValue2">1</span>
 						<Input class="range" type="range" value="1" min="1" max="4" required onchange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
 					</div>
@@ -179,7 +179,7 @@
 				</br>
 				</br>
 					<div>
-						<h3 style ="float: left;";>Select number of balls: </h3>
+						<h2 style ="float: left;";>Select number of balls: </h2>
 						<span id="rangeValue3">50</span>
 						<Input class="range" type="range" value="50" min="50" max="90" required onChange="cahngeRange(this.value)" onmousemove="rangeSlide3(this.value)">
 					</div>
@@ -197,24 +197,24 @@
 				</script>
 				<br>
 				<br>
-				<h3 align="center">Choose colors of balls: </h3>
+				<h2 align="center">Choose colors of balls: </h2>
 				<br>
 				<br>
 				<div align=center> 
 					<div>
-						<h4 style ="float: left; width: 33%;";>5 points</h4>
+						<h3 style ="float: left; width: 33%;";>5 points</h3>
 							<input id="5color" type='color' value='#ff0000' class='colour' style="float: left;width: 33%;">
 					</div>
 					<br>
 					<br>
 					<div >
-						<h4 style ="float: left; width: 33%;";>15 points</h4>
+						<h3 style ="float: left; width: 33%;";>15 points</h3>
 							<input id="15color" type='color' value='#2b00ff' class='colour' style="float: left;width: 33%;">
 					</div>
 					<br>
 					<br>
 					<div>
-						<h4 style ="float: left; width: 33%;";>25 points</h4>
+						<h3 style ="float: left; width: 33%;";>25 points</h3>
 						<div class="color_front" id="ball3">
 							<input id="25color" type='color' value='#04ff00' class='colour' style="float: left;width: 33%;">
 						</div>
@@ -232,12 +232,13 @@
 		
 		<form id="signup" action="" method="post" name="signup" style="display: none;">
 			<div class="header">
-				<h3>Sign Up</h3>
-				<p>Please fill out this form</p>
+				<h3 align = "center">Sign Up</h3>
+				<p align = center>Please fill out this form</p>
 			</div>
-			<div class="inputs">
+			<div class="inputs" align = "center">
 				<input type="text" id="userName" name="userName" placeholder="UserName" autofocus>
-				<input type="text" id="fullName" name="fullName" placeholder="Full Name" autofocus>
+				<input type="text" id="firstName" name="firstName" placeholder="First Name" autofocus>
+				<input type="text" id="lastName" name="lastName" placeholder="Last Name" autofocus>
 				<input type="text" id="email" name="email" placeholder="Email" autofocus>
 				<input type="password" id="password" name="password" placeholder="Password" autofocus>
 				<input type="date" placeholder="Date" id="datepicker" name="datepicker" autofocus>
@@ -247,10 +248,10 @@
 
 		<form id="login" style="display: none;">
 			<div class="header">
-				<h3>Login</h3>
-				<p>Please fill out this form</p>
+				<h3 align = "center">Login</h3>
+				<p align = "center">Please fill out this form</p>
 			</div>
-			<div class="inputs">
+			<div class="inputs" align = "center">
 				<input type="Text" id="logUsername" name="logUsername" placeholder="Username" autofocus />
 				<input type="password" id="logPassword" name="logPassword" placeholder="Password" />	
 				
@@ -273,12 +274,3 @@
 	
 	</footer>
 </html>
-
-<!-- <script>
-	window.addEventListener("keydown", function(e) {
-		// space and arrow keys
-		if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-			e.preventDefault();
-		}
-	}, false);
-</script> -->

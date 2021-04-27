@@ -15,11 +15,11 @@ body{
     font-size:  50px;
 }
 
-h3 {
+/* h3 {
     font-family: "Lucida", cursive, sans-serif;
     border-radius: 20px;
     font-size:  20px;
-}
+} */
 
 h2 {
     font-family: "Lucida", cursive, sans-serif;
@@ -84,8 +84,8 @@ li a:hover {
 
 
 .container {
-    width: 406px;
-    max-width: 406px;
+    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -108,20 +108,20 @@ li a:hover {
 
 #signup,#login .header h3 {
     color: #333333;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 #signup .header p {
     color: #8f8f8f;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 300;
 }
 
 #login .header p {
     color: #8f8f8f;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 300;
 }
 
@@ -148,7 +148,7 @@ li a:hover {
 
 #signup .inputs label {
     color: #8f8f8f;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 300;
     letter-spacing: 1px;
     margin-bottom: 7px;
@@ -156,7 +156,7 @@ li a:hover {
 }
 #login .inputs label {
     color: #8f8f8f;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 300;
     letter-spacing: 1px;
     margin-bottom: 7px;
@@ -187,7 +187,7 @@ input:-moz-placeholder {
 
 #login .inputs input[type=password],input[type=Text] {
     background: #f5f5f5;
-    font-size: 0.8rem;
+    font-size: 1rem;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -217,12 +217,12 @@ input:-moz-placeholder {
 
 #signup .inputs label.terms {
     float: left;
-    font-size: 14px;
+    font-size: 22px;
     font-style: italic;
 }
 #login .inputs label.terms {
     float: left;
-    font-size: 14px;
+    font-size: 22px;
     font-style: italic;
 }
 #signup .inputs #submit,#log_btn,#reg_btn {
@@ -230,7 +230,7 @@ input:-moz-placeholder {
     margin-top: 20px;
     padding: 15px 0;
     color: #fff;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 500;
     letter-spacing: 1px;
     text-align: center;
@@ -269,7 +269,7 @@ input:-moz-placeholder {
     margin-top: 20px;
     padding: 15px 0;
     color: #fff;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 500;
     letter-spacing: 1px;
     text-align: center;

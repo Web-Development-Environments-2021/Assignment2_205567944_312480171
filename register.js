@@ -60,38 +60,36 @@ function settingsWindow() {
 
 
 function create_user() {
-    let userNamee = document.getElementById("userName").value;
-    let fullNamee = document.getElementById("fullName").value;
-    let emaill = document.getElementById("email").value;
-    let passwordd = document.getElementById("password").value;
-    let date_pickerr = document.getElementById("datepicker").value;
+  let userNamee = document.getElementById("userName").value;
+  let firstNamee = document.getElementById("firstName").value;
+  let lastNamee = document.getElementById("lastName").value;
+  let emaill = document.getElementById("email").value;
+  let passwordd = document.getElementById("password").value;
+  let date_pickerr = document.getElementById("datepicker").value;
 
 
-    //check if username exists
-    let check_user=localStorage.getItem(userNamee)
-    if(check_user!=null){
-        let user_string=JSON.parse(check_user)
-        let name_user=user_string[0]["userName"]
-        alert("Username: "+ name_user + " exists! try another one ")
-        return;
-    }
-    if(date_picker==''){
-        alert("PLease choose your birth date")
-        return;
-    }
+  //check if username exists
+  let check_user=localStorage.getItem(userNamee)
+  if(check_user!=null){
+      let user_string=JSON.parse(check_user)
+      let name_user=user_string[0]["userName"]
+      alert("Username: "+ name_user + " exists! try another one ")
+      return;
+  }
+  if(date_pickerr==''){
+      alert("Please choose your birth date")
+      return;
+  }
 
-
-    // var userInsert = [{userName: userName,
-    // fullName: "Admin",
-    // email: "k@p.k",
-    // password: "k",
-    // datepicker:01/01/1990}];
-    // let user_detail = [{"userNmae: " + userName.value,"fullNmae: " + fullName,"email: " + email,"password: " + password,"datepicker: " + date_picker}]
-    // localStorage.setItem(userName,user_detail);
-    alert("Account was created!")
-    //document.getElementById("current_user").innerHTML = "Hello, " + userName;
-    login();
-    
+  let fullNamee = firstNamee + " " + lastNamee;
+  var userInsert = [{userName: userNamee,
+  fullName: fullNamee,
+  email: emaill,
+  password: passwordd,
+  datepicker:date_pickerr}];
+  localStorage.setItem(userNamee,JSON.stringify(userInsert));
+  alert("Account was created!")
+  login();
 }
 
 function authenticate() {
@@ -118,66 +116,75 @@ function authenticate() {
 }
 
 $(document).ready(function() {
-    $("#signup").validate({
-      errorClass: "error fail-alert",
-      validClass: "valid success-alert",
-      rules: {
-        userName : {
-          required: true,
-          minlength: 3
-        },
-        fullName: {
-          required: true,
-          pattern:  /^[a-zA-Z]+( [a-zA-Z]+)+$/,
-          minlength: 5
-        },
-        email: {
-          required: true,
-          pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
-        },
-        password: {
-          required: true,
-          minlength: 6,
-          pattern: /[A-Za-z0-9]*([a-zA-Z]+[0-9]+|[0-9]+[a-zA-Z]+)/
-        },
-        birth: {
-            required: true,
-            //minlength: 4
-        }
+  $("#signup").validate({ 
+    errorClass: "error fail-alert",
+    validClass: "valid success-alert",
+    rules: {
+      userName : {
+        required: true,
+        minlength: 3
       },
-      messages : {
-        userName: {
-            required: "Please enter an username",
-          minlength: "Name should be at least 3 characters"
-        },
-        fullName: {
-          required: "Please enter your first and last name",
-          minlength: "Full name must be at least 4 letters"
-        },
-        email: {
-          required: "Please enter your email",
-          email: "The email should be in the format: abc@domain.x",
-        },
-        password: {
-          required: "Please enter a password",
-          minlength: "Password must be at least 6 letters"
-        },
-        birth: {
-            required:"Please choose your birth date",
-            //minlength:"Please choose your birth date"
-        }
+      firstName: {
+        required: true,
+        pattern:  /^[a-zA-Z ]+$/,
+        minlength: 2
       },
-      ///create a new user if all fields are correct
-      submitHandler: function(form){
-        create_user();
+      lastName: {
+        required: true,
+        pattern:  /^[a-zA-Z ]+$/,
+        minlength: 2
+      },
+      email: {
+        required: true,
+        pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+      },
+      password: {
+        required: true,
+        minlength: 6,
+        pattern: /[A-Za-z0-9]*([a-zA-Z]+[0-9]+|[0-9]+[a-zA-Z]+)/
+      },
+      birth: {
+          required: true,
+          //minlength: 4
       }
-    });
-    $("#datepicker").datepicker({
-        dateFormat: "dd/mm/yy",
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-20:+0"
-        });
+    },
+    messages : {
+      userName: {
+          required: "Please enter an username",
+        minlength: "Name should be at least 3 characters"
+      },
+      firstName: {
+        required: "Please enter your first name",
+        minlength: "First name must be at least 2 letters"
+      },
+      lastName: {
+        required: "Please enter your last name",
+        minlength: "Last name name must be at least 2 letters"
+      },
+      email: {
+        required: "Please enter your email",
+        email: "The email should be in the format: abc@domain.x",
+      },
+      password: {
+        required: "Please enter a password",
+        minlength: "Password must be at least 6 letters"
+      },
+      birth: {
+          required:"Please choose your birth date",
+          //minlength:"Please choose your birth date"
+      }
+    },
+    ///create a new user if all fields are correct
+    submitHandler: function(form){
+      create_user();
+    }
+  });
+  $("#datepicker").datepicker({
+      dateFormat: "dd/mm/yy",
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-20:+0"
+      });
 });
 
 
