@@ -19,7 +19,10 @@ var upKey = 38;
 var downKey = 40;
 var rightKey = 39;
 var leftKey = 37;
+var countMillisForMedicine = 0;
+var countMillisForMonster = 0;
 
+var goodMonster=new Object();
 var monstersInterval;
 var monsterArray;
 var pacman;
@@ -48,17 +51,10 @@ function game(upKey1, downKey1, rightKey1, leftKey1) {
 	rightKey = rightKey1;
 	leftKey = leftKey1;
 	movement="right";
+	context = canvas.getContext("2d");
 	Start();
 
 }
-
-$(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
-});
-
-
-
 
 /*
 0- nothing
@@ -70,7 +66,6 @@ $(document).ready(function() {
 6- medicine
 10- pacman
 */
-
 function Start() {
 	board = new Array();
 	lifeArray = new Array(1,1,1,1,1);
@@ -89,6 +84,7 @@ function Start() {
 	var largeBall=nubmerBallInt*0.1;
 	var pacman_remain = 1;
 	var monsterHelp = parseInt(monsters);
+	var goodMonHelp= 1;
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
@@ -166,7 +162,8 @@ function Start() {
 					shape.j = j;
 					pacman_remain--;
 					board[i][j] = 10; //pacman
-				} else {
+				}				
+				else {
 					board[i][j] = 0; //nada
 				}
 				cnt--;
@@ -191,6 +188,12 @@ function Start() {
 		largeBall--;
 		food_remain--;
 	}
+	var cell = findRandomCell(board);
+	goodMonster.whatWas = board[cell[0]][cell[1]];
+	goodMonster.i = cell[0];
+	goodMonster.j = cell[1];
+	
+
 	keysDown = {};
 	addEventListener(
 		"keydown",
@@ -206,9 +209,8 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
-	madicineInterval = setInterval(dropMadicine, 3000);
-	monstersInterval = setInterval(changeMonstersPositions, 500);
+	interval = setInterval(UpdatePosition, 100);
+	
 }
 
 function addLife() {
@@ -234,6 +236,23 @@ function dropMadicine() {
 		}
 	}	
 	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
+}
+
+function dropGoodMonster() {
+	var emptyCell = findRandomEmptyCell(board);
+	board[goodMonster.i][goodMonster.j] = 0;
+	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
+
+	//delete good monster 
+	for (var i = 0; i < 10; i++) {
+		for (var j = 0; j < 10; j++) {
+			if (board[i][j]==6){
+				board[i][j] = 0;///delete madicine
+				break;
+			}
+		}
+	}	
+	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
 	
 }
 
@@ -243,63 +262,23 @@ function isValidMove(i,j) {
 	return false;
 }
 
-function changeMonstersPositions() {
 
-	for (var i=0; i<parseInt(monsters); i++) {
-		var monster = monsterArray[i];
-		var left = Math.sqrt(200); // maximal value
-		var right = Math.sqrt(200); // maximal value;
-		var up = Math.sqrt(200); // maximal value;
-		var down = Math.sqrt(200); // maximal value;
-
-		if (isValidMove(monster.i, monster.j-1)==true) { //Up
-			up = Math.sqrt(Math.pow((monster.i) - shape.i,2) + Math.pow((monster.j-1) - shape.j,2));
-		}
-		if (isValidMove(monster.i, monster.j+1)) { //Down
-			down = Math.sqrt(Math.pow((monster.i) - shape.i,2) + Math.pow((monster.j+1) - shape.j,2));
-		}
-		if (isValidMove(monster.i-1, monster.j)) { //left
-			left = Math.sqrt(Math.pow((monster.i-1) - shape.i,2) + Math.pow((monster.j) - shape.j,2));
-		}
-		if (isValidMove(monster.i+1, monster.j)) { //right
-			right = Math.sqrt(Math.pow((monster.i+1) - shape.i,2) + Math.pow((monster.j) - shape.j,2));
-		}
-
-		var minimum = Math.min(left,right,up,down);
-
-		var Distances = {"left": left, "right": right, "up": up, "down": down};
-		var movement=Object.keys(Distances).find(key => Distances[key] === minimum);
-		board[monster.i][monster.j]= monster.whatWas;
-		switch(movement) {
-			case "up":
-				monster.whatWas = board[monster.i][monster.j - 1];	
-				monster.j = monster.j - 1;
-				break;
-			case "down":
-				monster.whatWas = board[monster.i][monster.j + 1];	
-				monster.j = monster.j + 1;
-				break;
-			case "left":
-				monster.whatWas = board[monster.i - 1][monster.j];
-				monster.i = monster.i- 1;
-				break;
-			case "right":
-				monster.whatWas = board[monster.i + 1][monster.j];
-				monster.i = monster.i + 1;
-				break;
-		}
-		if (monster.i == shape.i && monster.j == shape.j) 
-			collapse();
-		else
-			board[monster.i][monster.j] = 5;
-	}
-}
 
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
 	var j = Math.floor(Math.random() * 9 + 1);
 	while (board[i][j] != 0) {
+		i = Math.floor(Math.random() * 9 + 1);
+		j = Math.floor(Math.random() * 9 + 1);
+	}
+	return [i, j];
+}
+
+function findRandomCell(board) {
+	var i = Math.floor(Math.random() * 9 + 1);
+	var j = Math.floor(Math.random() * 9 + 1);
+	while (board[i][j] == 4 || board[i][j]==10 || board[i][j]==7) {
 		i = Math.floor(Math.random() * 9 + 1);
 		j = Math.floor(Math.random() * 9 + 1);
 	}
@@ -400,18 +379,25 @@ function Draw(movement) {
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}else if (board[i][j] == 5) { //draw monsters
-				monsterImage=new Image();
+				var monsterImage=new Image();
 				var numMonster= getRandomInt(1,3);
 				monsterImage.src= "images1/monster" + numMonster.toString() + ".png";
+				// monsterImage.src= "images1/monster1.png";
 				context.drawImage(monsterImage, center.x-30, center.y-30, 50, 50);
 			} else if (board[i][j] == 6) { //draw madicine
-				madicine=new Image();
+				var madicine=new Image();
 				madicine.src= "images1/madicine.png";
 				context.drawImage(madicine, center.x-30, center.y-30, 50, 50);
+			} else if (board[i][j] == 7) { //draw good monster
+				var imageGoodMons=new Image();
+				imageGoodMons.src= "images1/good.png";
+				context.drawImage(imageGoodMons, center.x-30, center.y-30, 50, 50);
 			}
 		}
 	}
 }
+
+
 
 function updateLives(){ 
 	for (var i=0; i<5; i++) {
@@ -429,17 +415,12 @@ function minusLife(){
 		if( lifeArray[i]==1){
 			lifeArray[i]=0;
 			$("#life"+i.toString()).css("display", "none");
-			window.clearInterval(interval);
-			if (i == 0) {
-				window.alert("Loser!!!");
-				window.clearInterval(interval);
-				//Start
-				//tomorrow
-			}
 			break;
 		}
 	}
 }
+
+
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
@@ -469,6 +450,18 @@ function UpdatePosition() {
 			movement = "right";
 		}
 	}
+
+	if (countMillisForMonster == 4) {
+		changeMonstersPositions();
+		changeGoodMonsterPosition();
+		countMillisForMonster = 0;
+	}
+	if (countMillisForMedicine == 24) {
+		dropMadicine();
+		countMillisForMedicine = 0;
+	}
+	
+		
 	if (board[shape.i][shape.j] == 1) {
 		score+=5;
 	}
@@ -483,25 +476,45 @@ function UpdatePosition() {
 	}
 	if (board[shape.i][shape.j] == 6) {
 		addLife();		//update life table
-		updateLives()
-		//display life amount 
+		updateLives();
+	}
+	if (board[shape.i][shape.j] == 7) {//pacman eat good monster
+		collapseGoodMonster();
+		///maybe put here collapse
 	}
 	board[shape.i][shape.j] = 10;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (time_elapsed >= parseInt(time)) {
-		if (score > 100) {
-			window.alert("Winner!");
-		}
-		else 
-			window.alert("You are better then " + score + " points!");
-		window.clearInterval(interval);
+	
+	if (lifeArray[0]==0) { // lost because of life
+		document.getElementById("endGameMessage").innerHTML = "Loser!";
+		scoreHtml.value = score;
+		displayPlayAgainModal();
+		clearInterval(interval);
+		clearInterval(madicineInterval);
+
 	}
-	 else {
-		window.clearInterval(monstersInterval);
-		window.clearInterval(madicineInterval);
+	if (time_elapsed >= parseInt(time)) { //lost because time
+		if (score > 100) {
+			scoreHtml.value = score;
+			document.getElementById("endGameMessage").innerHTML = "Winner!";
+		}
+		else {
+			scoreHtml.value = score;
+			document.getElementById("endGameMessage").innerHTML = "You are better than " + score.toString() + " points!";
+		}
+			
+		displayPlayAgainModal();
+		window.clearInterval(interval);
+		clearInterval(madicineInterval);
+	}
+	else {
+
+		//window.clearInterval(madicineInterval);
 		Draw(movement);
 	}
+	countMillisForMedicine++;
+	countMillisForMonster++;
 }
 
 window.addEventListener("keydown",function (e) {
@@ -517,37 +530,3 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function collapse() {
-	score-=10;
-	minusLife();	
-	for (var i = 1; i <= parseInt(monsters); i++ ) {
-		var mons =monsterArray[i-1];
-		board[mons.i][mons.j]=0;
-		if (i==1){
-			board[0][0] = 5;
-			mons.i = 0;
-			mons.j = 0;
-		}
-		else if (i==2){
-			board[0][9] = 5;
-			mons.i = 0;
-			mons.j = 9;
-		}
-		else if (i==3){
-			board[9][0] = 5;
-			mons.i = 9;
-			mons.j = 0;
-		}
-		else if (i==4){
-			board[9][9] = 5;
-			mons.i = 9;
-			mons.j = 9;
-		}
-		mons.whatWas=0;
-	}
-	board[shape.i][shape.j]=0;
-	var emptyCell = findRandomEmptyCell(board);
-	shape.i = emptyCell[0];
-	shape.j = emptyCell[1];
-	board[shape.i][shape.j] = 10; //pacman
-}

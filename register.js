@@ -14,6 +14,7 @@ function register() {
     document.getElementById("reg_btn").style.display = "none";
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
+    document.getElementById("playAgainModal").style.display = "none";
 
 }
 
@@ -25,6 +26,8 @@ function login() {
     document.getElementById("reg_btn").style.display = "none";
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
+    document.getElementById("playAgainModal").style.display = "none";
+
 }
 function logout() {
     currentUser="";
@@ -39,6 +42,8 @@ function logout() {
     document.getElementById("log_tab").style.display = "block";
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
+    document.getElementById("playAgainModal").style.display = "none";
+
 
 }
 
@@ -54,6 +59,8 @@ function settingsWindow() {
     document.getElementById("log_tab").style.display = "none";
     document.getElementById("logout").style.display = "block";
     document.getElementById("settings").style.display = "block";
+    document.getElementById("playAgainModal").style.display = "none";
+
 
 
 }
@@ -193,6 +200,51 @@ function empty(){
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
 }
+
+function displayPlayAgainModal(){
+  // Get the modal
+  var modal = document.getElementById("playAgainModal");
+
+  var btnYes = document.getElementById("yesButton");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[1];
+
+  modal.style.display = "block";
+  // When the user clicks the button, open the modal 
+  btnYes.onclick = function() {
+      if (modal.style.display = "none"){
+          //modal.style.display = "block";
+          settingsWindow();
+    }
+  }
+  var btnNo = document.getElementById("noButton");
+
+  btnNo.onclick = function() {
+    if (modal.style.display = "none"){
+        modal.style.display = "block";
+        logout();
+    }
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+    logout();
+  }
+
+  var modal = document.querySelector('.modalPlayAgain')
+
+  window.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+      modal.style.display = 'none'
+      logout();
+  }
+  })
+}
+
+
+
 function about(){
     // Get the modal
     var modal = document.getElementById("myModal");
@@ -212,7 +264,7 @@ function about(){
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-    modal.style.display = "none";
+      modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -222,7 +274,7 @@ function about(){
     }
     }
 
-    var modal = document.querySelector('.modal')
+    var modal = document.querySelector('.modalAbout')
 
     window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {

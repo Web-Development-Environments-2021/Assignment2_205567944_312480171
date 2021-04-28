@@ -1,33 +1,3 @@
-/* .element {
-    float: left;
-    width: auto;
-    height: auto;
-    background: #ce8888; 
-  } */
-  /* #game.parent {
-  position:absolute;
-	background-size:100% 100%;
-	background-color:blue;
-	width:100%;
-	height:100%;
-} */
-/* #canvas {
-	background-color: red;
-	width: 700px;
-	height:700px;
-} */
-
-/* .gameBoard {
-  border: 3px solid #fff;
-  padding: 20px;
-}
-
-.gameChild {
-  width: 50%;
-  float: left;
-  padding: 20px;
-  border: 2px solid red;
-}   */
 
 .gameBoard {
   display: grid;

@@ -36,7 +36,7 @@
 				<li style="float:right" ><img src="images1/logo.png" width="180" height="100" ></li>
 				</ul>
 			</div>		
-			<div id="myModal" class="modal">
+			<div id="myModal" class="modalAbout">
 				<div class="modal-content">
 					<div class="modal-header">
 					<span class="close">&times;</span>
@@ -125,6 +125,43 @@
 		</div>
 
 		<div class = "container">
+			<div id="playAgainModal" class="modalPlayAgain" style="display: none;">
+				<div class="modal-content">
+					<div class="modal-header">
+					<span class="close">&times;</span>
+					<h2 id = "endGameMessage" align = "center"></h2>
+					</div>
+					<div class="modal-body">
+						<p >
+							<h1 align = "center">Your score: </h1>
+							<br>
+							<br>
+							<div align = "center">
+								<input id="scoreHtml" type="text">
+							</div>
+							<br>
+							<br>
+							<h2 align = center>Would you like to play again?</h2>
+						</p>
+						<br>
+						<div align = "center">
+							<table> 
+								<th>
+									<button type="submit" class="example_b" value="YES" id = "yesButton" align = "center">YES</button> 
+								</th>
+								<th>
+									<button type="submit" class="example_b" value="NO" id = "noButton" align = "center">NO</button> 
+								</th>
+							</table>
+						</div>
+						<br>
+						<br>
+						<br>
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
 			<form id = "settings" action="" method="post" name="settings" style="display: none; width: auto;">
 				<h1 align="center"> Game Settings</h1>
 				<br>
