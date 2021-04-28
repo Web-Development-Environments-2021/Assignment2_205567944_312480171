@@ -36,7 +36,7 @@
 				<li><a  href="#" onclick="register()" id="reg_tab" name="reg_tab">Register</a></li>		
 				<li><a  href="#" onclick="login()" id="log_tab" name="log_tab">Login</a></li>		
 				<li><a  href="#" onclick="logout()" id="logout" name="logout" style="display: none;">Log Out</a></li>		
-				<li style="margin-left: 800px;" class="home">Alona Lasry & Niv Meir</li>
+				<li style="margin-left: 1000px;" class="home">Alona Lasry & Niv Meir</li>
 				<li style="float:right" ><img src="images1/logo.png" width="180" height="100" ></li>
 				</ul>
 			</div>		
@@ -47,9 +47,23 @@
 					<h2>Pacman</h2>
 					</div>
 					<div class="modal-body">
-					<p>Developed by Alona Lasry & Niv Meir</p>
-					<p>JQuery Plugins: jquery version 3.4.1</p>
-					<p>Difficulties: ....</p>
+						<p>
+							<h2 align = "center">Developed by Alona Lasry & Niv Meir</h2>
+							<h2 align = "center">JQuery Plugins: jquery version 3.4.1</h2>
+							<h2 align = "center">We also used Datepicker tamplete.</h2>
+							<br>
+							<br>
+							<h3 align = "center">The main difficulties we encountered were following the monsters</h2>
+							<h3 align = "center">and medicine movements, including the collapse cases</h2>
+							<h3 align = "center">between themselves and the pacman</h2>
+							<h3 align = "center">In addition, styling the game was pretty exhausting</h2>
+							<br>
+							<br>
+							<h2 align = "center">Enjoy our game!</h2>
+							<div align = "center">
+								<img src="images1/aboutGif.gif" align = "center">
+							</div>
+						</p>
 					</div>
 					<div class="modal-footer">
 					</div>
@@ -87,33 +101,33 @@
 							</table>
 						</div>
 						<br>
-						<input type="button" id="startOver" class="example_b" name="startOver" align="center" value="Start new game" onclick="settingsWindow()">  
+						<input type="button" id="startOver" class="example_b" name="startOver" align="center" value="Start new game" onclick="endGame()">  
 					</th>
 					  <th id = "canvasParent" >
 					  	<div class="gameCanvas" >
-							<canvas id="canvas" width="600" height="600" style="border:1px solid"></canvas>
+							<canvas id="canvas" width="720" height="720" style="border:3px solid; border-style: solid; border-color:  grey;"></canvas>
 						</div>	
 					</th>
 					  <th>
 						<h1 align="center" >Your Settings:</h1> 
 						<br>
 						<div id = chosenSettings>
-							<div align ="left">
+							<div align ="center">
 								<h2>Time to Play:</h2>
 								<input id="timeHTML" type="text" >
 							</div>
 							<br>
-							<div align ="left">
+							<div align ="center">
 								<h2>Number of monsters:</h2>
 								<input id="monsterHtml" type="text" >
 							</div>
 							<br>
-							<div align ="left">
+							<div align ="center">
 								<h2>Number of Balls:</h2>
 								<input id="ballsHtml" type="text">
 							</div>
 							<br>
-							<div align ="left">
+							<div align ="center">
 								<h2>Ball's colors:</h2>
 								<br>
 								<h3>5 Points color:<span id="5pt" class="dot"> </span></h3>
@@ -173,34 +187,60 @@
 					<div class="box_keybtn" align="center">
 						<h2 align="center"> select key directions: </h2>
 						<br>
-						<div>
-							<img for="up" src="images1/up.png" style= "align-items: center;">
-							<br>
-							<output id="upB">38</output>
-							<input maxlength="1" type="text" id="upButton" name="upButton" class="input"
-							onkeydown="updateKey(event,'up')"  /> 
-						</div>
-						<div>
-							<img for="down" src="images1/down.png">
-							<br>
-							<output id="downB">40</output>
-							<input maxlength="1" type="text" id="downButton" name="downButton" class="input"
-								onkeydown="updateKey(event,'down')"/>
-						</div>
-						<div>
-							<img for="left" src="images1/left.png">
-							<br>
-							<output id="leftB">37</output>
-							<input maxlength="1" type="text" id="leftButton" name="leftButton" class="input"
-								onkeydown="updateKey(event,'left')" />
-						</div>
-						<div>
-							<img for="right" src="images1/right.png">
-							<br>
-							<output id="rightB">39</output>
-							<input maxlength="1" type="text" id="rightButton" name="rightButton" class="input"
-								onkeydown="updateKey(event,'right')" />
-						</div>
+						<table>
+							<th>
+								<tr>
+									<td>
+										<input maxlength="1" type="text" id="upButton" name="upButton" class="input"
+										onkeydown="updateKey(event,'up')" align="left" /> 
+									</td>
+									<td>
+										<output id="upB">Arrow up</output>
+									</td>
+									<td>
+										<img for="up" src="images1/up.png" style= "align-items: center;">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input maxlength="1" type="text" id="downButton" name="downButton" class="input"
+															onkeydown="updateKey(event,'down')"/>
+									</td>
+									<td>
+										<output id="downB">Arrow down</output>
+									</td>
+									<td>
+										<img for="down" src="images1/down.png">
+									</td>					
+								</tr>
+							</th>
+							<th>
+								<tr>
+									<td>
+										<input maxlength="1" type="text" id="leftButton" name="leftButton" class="input"
+										onkeydown="updateKey(event,'left')" />
+									</td>
+									<td>
+										<output id="leftB">Arrow left</output>
+									</td>
+									<td>
+										<img for="left" src="images1/left.png">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input maxlength="1" type="text" id="rightButton" name="rightButton" class="input"
+															onkeydown="updateKey(event,'right')" />
+									</td>
+									<td>
+										<output id="rightB">Arrow right</output>
+									</td>
+									<td>
+										<img for="right" src="images1/right.png">
+									</td>
+								</tr>
+							</th>
+						</table>
 					</div>
 					<br>
 					<div>
@@ -304,14 +344,29 @@
 			<input type="button" id="reg_btn" name="reg_btn" onclick="register()" value="Register">
 			<input type="button" onclick="login()" id="log_btn" name="log_btn" value="Login">
 		</div>
+		<div id="startGif">
+			<img src="images1/start_gif.gif" height="450" width="650" style="left: auto; display: block;" >
+		</div>
+		<br>
+		<br>
+		<!-- <div style="width:30vw; margin: auto;" align="center"> 
+			
+		</div> -->
 	</div>
 
 	</body>
 	<br>
 	<br>
 	<footer id="footer">
-		<p>PacMan</p>
-		<p>For more information: nivq@post.bgu.ac.il, alonalas@post.bgu.ac.il</p>
-	
+		<p>
+			<h2>PacMan</h2>
+			<h3>For more information: nivq@post.bgu.ac.il, alonalas@post.bgu.ac.il</h3>
+		</p>
 	</footer>
 </html>
+
+
+
+
+							
+							

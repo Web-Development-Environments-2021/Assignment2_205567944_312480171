@@ -1,7 +1,7 @@
 var currentUser;
 var userArray = [{userName: "k",
-fullName: "Admin",
-email: "k@p.k",
+fullName: "k",
+email: "k@k.k",
 password: "k",
 datepicker:01/01/1990}];
 localStorage.setItem("k",JSON.stringify(userArray));
@@ -15,6 +15,7 @@ function register() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
     document.getElementById("playAgainModal").style.display = "none";
+    document.getElementById("startGif").style.display = "none";
 
 }
 
@@ -27,7 +28,7 @@ function login() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
     document.getElementById("playAgainModal").style.display = "none";
-
+    document.getElementById("startGif").style.display = "none";
 }
 function logout() {
     currentUser="";
@@ -42,8 +43,9 @@ function logout() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("settings").style.display = "none";//chnge to none
     document.getElementById("playAgainModal").style.display = "none";
-
-
+    document.getElementById("startGif").style.display = "block";
+    music.currentTime = 0;
+		music.pause();
 }
 
 function settingsWindow() {
@@ -58,9 +60,7 @@ function settingsWindow() {
     document.getElementById("logout").style.display = "block";
     document.getElementById("settings").style.display = "block";
     document.getElementById("playAgainModal").style.display = "none";
-
-
-
+    document.getElementById("startGif").style.display = "none";
 }
 
 function create_user() {
@@ -271,3 +271,4 @@ function about(){
     }
     })
 }
+

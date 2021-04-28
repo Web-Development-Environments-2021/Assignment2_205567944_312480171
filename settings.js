@@ -4,13 +4,11 @@ var leftKey=37;
 var rightKey=39;
 
 function checkSetting(){ 
-    
     $("#settings").validate({
         submitHandler: function(form){
             game(upKey, downKey, rightKey, leftKey);
         }
     }); 
-
 }
 
 function changeTime(val) {
@@ -29,19 +27,19 @@ function randomSettings(){
     /////default keys
     $("#leftButton").val("");
     $("#leftButton").text("");
-    $("#leftB").val(37);
+    $("#leftB").val("Arrow left");
 
     $("#upButton").val("");
     $("#upButton").text("");
-    $("#upB").val(38);
+    $("#upB").val("Arrow up");
 
     $("#rightButton").val("");
     $("#rightButton").text("");
-    $("#rightB").val(39);
+    $("#rightB").val("Arrow right");
 
     $("#downButton").val("");
     $("#downButton").text("");
-    $("#downB").val(40);
+    $("#downB").val("Arrow down");
 
 
     ////random monsters, time and balls
@@ -74,17 +72,13 @@ function randomSettings(){
 
     $("#25color").css("background-color", color3);
     $("#25color").val(color3);
+
+    game(upKey, downKey, rightKey, leftKey);
 }
 
 function getRandomColor() {
     var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
     return randomColor;
-    // var letters = '0123456789ABCDEF';
-    // var color = '#';
-    // for (var i = 0; i < 6; i++) {
-    //   color += letters[Math.floor(Math.random() * 16)];
-    // }
-    // return color;
   }
 
   function getRandomInt(min, max) {
