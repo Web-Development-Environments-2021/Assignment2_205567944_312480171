@@ -66,19 +66,19 @@ function collapse() {
 			mons.j = 0;
 		}
 		else if (i==2){
-			board[0][9] = 5;
+			board[0][11] = 5;
 			mons.i = 0;
-			mons.j = 9;
+			mons.j = 11;
 		}
 		else if (i==3){
-			board[9][0] = 5;
-			mons.i = 9;
+			board[11][0] = 5;
+			mons.i = 11;
 			mons.j = 0;
 		}
 		else if (i==4){
-			board[9][9] = 5;
-			mons.i = 9;
-			mons.j = 9;
+			board[11][11] = 5;
+			mons.i = 11;
+			mons.j = 11;
 		}
 		mons.whatWas=0;
 	}

@@ -26,6 +26,8 @@ var goodMonster=new Object();
 var monstersInterval;
 var monsterArray;
 var pacman;
+var music = new Audio("images1/pacman_audio.mpeg"); 
+
 
 function game(upKey1, downKey1, rightKey1, leftKey1) {
 
@@ -38,6 +40,7 @@ function game(upKey1, downKey1, rightKey1, leftKey1) {
     document.getElementById("log_tab").style.display = "none";
     document.getElementById("logout").style.display = "block";
     document.getElementById("settings").style.display = "none";
+	document.getElementById("startGif").style.display = "none";
 
 	time = document.getElementById("rangeValue1").innerHTML;
 	monsters = document.getElementById("rangeValue2").innerHTML
@@ -52,6 +55,7 @@ function game(upKey1, downKey1, rightKey1, leftKey1) {
 	leftKey = leftKey1;
 	movement="right";
 	context = canvas.getContext("2d");
+	music.play();
 	Start();
 
 }
@@ -76,7 +80,7 @@ function Start() {
 	}
 	score = 0;
 	pac_color = "yellow";
-	var cnt = 100;
+	var cnt = 144;
 	var nubmerBallInt=parseInt(numBalls)
 	var food_remain = nubmerBallInt;
 	var smallBall=nubmerBallInt*0.6;
@@ -86,14 +90,16 @@ function Start() {
 	var monsterHelp = parseInt(monsters);
 	var goodMonHelp= 1;
 	start_time = new Date();
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 12; i++) {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < 10; j++) {
-			if ((i == 3 && j == 3) ||(i == 3 && j == 4) ||(i == 3 && j == 5) ||(i == 6 && j == 1) ||(i == 6 && j == 2)) {
+		for (var j = 0; j < 12; j++) {
+			if ((i == 3 && j == 3) ||(i == 3 && j == 4) ||(i == 3 && j == 5) ||(i == 6 && j == 1) ||(i == 6 && j == 2) 
+			|| (i == 7 && j == 8) || (i == 8 && j == 8) || (i == 8 && j == 7 || (i == 4 && j == 11) || (i == 4 && j == 10) || (i == 3 && j == 10)
+			|| (i == 2 && j == 10) || (i == 1 && j == 10))) {
 				board[i][j] = 4; //wall=4	
 			}
-			else if(monsterHelp > 0 &&  ( (i == 0 && j == 0) || (i == 0 && j == 9) || (i == 9 && j == 0) || (i == 9 && j == 9)  ) ) {
+			else if(monsterHelp > 0 &&  ( (i == 0 && j == 0) || (i == 0 && j == 11) || (i == 11 && j == 0) || (i == 11 && j == 11)  ) ) {
 					////check if there is monsters to drop in board and we are in one of the corners
 					board[i][j] = 5;
 					monsterArray[monsterHelp - 1].i = i;
@@ -214,27 +220,27 @@ function Start() {
 }
 
 function isValidMove(i,j) {
-	if (i >= 0 && i <= 9 && j >= 0 && j <= 9 && board[i][j] != 4)
+	if (i >= 0 && i <= 11 && j >= 0 && j <= 11 && board[i][j] != 4)
 		return true;
 	return false;
 }
 
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	var i = Math.floor(Math.random() * 11 + 1);
+	var j = Math.floor(Math.random() * 11 + 1);
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		i = Math.floor(Math.random() * 11 + 1);
+		j = Math.floor(Math.random() * 11 + 1);
 	}
 	return [i, j];
 }
 
 function findRandomCell(board) {
-	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	var i = Math.floor(Math.random() * 11 + 1);
+	var j = Math.floor(Math.random() * 11 + 1);
 	while (board[i][j] == 4 || board[i][j]==10 || board[i][j]==7) {
-		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		i = Math.floor(Math.random() * 11 + 1);
+		j = Math.floor(Math.random() * 11 + 1);
 	}
 	return [i, j];
 }
@@ -263,8 +269,8 @@ function Draw(movement) {
 	$("#15pt").css("background-color",fifteenPtsBall);
 	$("#25pt").css("background-color",twentyFivePtsBall);
 
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < 12; i++) {
+		for (var j = 0; j < 12; j++) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
@@ -366,7 +372,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < 11 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 			movement = "down";
 		}
@@ -378,7 +384,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < 11 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 			movement = "right";
 		}
@@ -420,6 +426,8 @@ function UpdatePosition() {
 	time_elapsed = (currentTime - start_time) / 1000;
 	
 	if (lifeArray[0]==0) { // lost because of life
+		music.currentTime = 0;
+		music.pause();
 		document.getElementById("endGameMessage").innerHTML = "Loser!";
 		scoreHtml.value = score;
 		displayPlayAgainModal();
@@ -428,6 +436,9 @@ function UpdatePosition() {
 
 	}
 	if (time_elapsed >= parseInt(time)) { //lost because time
+		music.currentTime = 0;
+		music.pause();
+
 		if (score > 100) {
 			scoreHtml.value = score;
 			document.getElementById("endGameMessage").innerHTML = "Winner!";
@@ -436,14 +447,11 @@ function UpdatePosition() {
 			scoreHtml.value = score;
 			document.getElementById("endGameMessage").innerHTML = "You are better than " + score.toString() + " points!";
 		}
-			
 		displayPlayAgainModal();
 		window.clearInterval(interval);
 		clearInterval(madicineInterval);
 	}
 	else {
-
-		//window.clearInterval(madicineInterval);
 		Draw(movement);
 	}
 	countMillisForMedicine++;
@@ -460,5 +468,15 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function endGame() {
+	scoreHtml.value = score;
+	music.currentTime = 0;
+	music.pause();
+	displayPlayAgainModal();
+	clearInterval(interval);
+	clearInterval(madicineInterval);
+	settingsWindow();
 }
 

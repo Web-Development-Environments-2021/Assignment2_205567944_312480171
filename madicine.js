@@ -1,8 +1,8 @@
 function dropMadicine() {
 	var emptyCell = findRandomEmptyCell(board);
 	//delete medicine
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < 12; i++) {
+		for (var j = 0; j < 12; j++) {
 			if (board[i][j]==6){
 				board[i][j] = 0;///delete madicine
 				break;

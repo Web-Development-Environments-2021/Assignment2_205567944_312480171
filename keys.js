@@ -18,7 +18,7 @@ function updateKey(event, key) {
         case "up":
             if(!(event.keyCode===downKey ||event.keyCode===leftKey||event.keyCode===rightKey)) {
                 upKey = event.keyCode;
-                $("#upB").text(event.keyCode);
+                $("#upB").text(event.key);
                 $("#upButton").text(event);
                 $("#upButton").val(event.value);
             }
@@ -30,7 +30,7 @@ function updateKey(event, key) {
         case "down": 
             if(!(event.keyCode===upKey ||event.keyCode===leftKey||event.keyCode===rightKey)) {
                 downKey = event.keyCode;
-                $("#downB").text(event.keyCode);
+                $("#downB").text(event.key);
                 $("#downButton").text(event);
                 $("#downButton").val(event.value);
             }
@@ -42,7 +42,7 @@ function updateKey(event, key) {
         case "left": 
             if(!(event.keyCode===downKey ||event.keyCode===upKey||event.keyCode===rightKey)) {
                 leftKey = event.keyCode;
-                $("#leftB").text(event.keyCode);
+                $("#leftB").text(event.key);
                 $("#leftButton").text(event);
                 $("#leftButton").val(event.value);
 
@@ -55,7 +55,7 @@ function updateKey(event, key) {
         case "right": 
             if(!(event.keyCode===downKey ||event.keyCode===leftKey||event.keyCode===upKey)) {
                 rightKey =event.keyCode;
-                $("#rightB").text(event.keyCode);
+                $("#rightB").text(event.key);
                 $("#rightButton").text(event);
                 $("#rightButton").val(event.value);
             }

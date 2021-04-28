@@ -9,10 +9,13 @@
   position: relative;
   display: block;
   text-align: right;
-  font-size: 1.5em;
+  font-size: 2em;
   color: black;
-  font-weight: 400;
+  font-weight: bold;
+
+  /* font-weight: 400; */
 }
+
 .range {
   float: left;
   width: 400px;
@@ -46,12 +49,13 @@ input[type=color] {
   color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #60a3bc;
+  background: rgb(82, 82, 109);
   padding: 20px;
   border-radius: 50px;
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
+  font-size: 30px;
   }
 
   .example_b:hover {
