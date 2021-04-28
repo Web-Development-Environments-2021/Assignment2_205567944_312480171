@@ -213,57 +213,11 @@ function Start() {
 	
 }
 
-function addLife() {
-	if (lifeArray[4] == 1)
-		return;
-	for (var i = 0; i < 5; i++) {
-		if (lifeArray[i]==0){
-			lifeArray[i] = 1;
-			return;
-		}
-	}
-}
-
-function dropMadicine() {
-	var emptyCell = findRandomEmptyCell(board);
-	//delete medicine
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
-			if (board[i][j]==6){
-				board[i][j] = 0;///delete madicine
-				break;
-			}
-		}
-	}	
-	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
-}
-
-function dropGoodMonster() {
-	var emptyCell = findRandomEmptyCell(board);
-	board[goodMonster.i][goodMonster.j] = 0;
-	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
-
-	//delete good monster 
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
-			if (board[i][j]==6){
-				board[i][j] = 0;///delete madicine
-				break;
-			}
-		}
-	}	
-	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
-	
-}
-
 function isValidMove(i,j) {
 	if (i >= 0 && i <= 9 && j >= 0 && j <= 9 && board[i][j] != 4)
 		return true;
 	return false;
 }
-
-
-
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
@@ -285,24 +239,6 @@ function findRandomCell(board) {
 	return [i, j];
 }
 
-function GetKeyPressed() {
-	if (keysDown[upKey]) {
-		return 1;
-	}
-	if (keysDown[downKey]) {
-		return 2;
-	}
-	if (keysDown[leftKey]) {
-		return 3;
-	}
-	if (keysDown[rightKey]) {
-		return 4;
-	}
-}
-
-
-
-
 /*
 0- nothing
 1- small ball
@@ -311,6 +247,7 @@ function GetKeyPressed() {
 4- wall
 5- monster
 6- madicine
+7- good monster
 10- pacman
 */
 function Draw(movement) {
@@ -397,8 +334,6 @@ function Draw(movement) {
 	}
 }
 
-
-
 function updateLives(){ 
 	for (var i=0; i<5; i++) {
 		if( lifeArray[i]==1){
@@ -419,8 +354,6 @@ function minusLife(){
 		}
 	}
 }
-
-
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
@@ -522,7 +455,6 @@ window.addEventListener("keydown",function (e) {
 		e.preventDefault();
 	}
 },false); 	
-
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);

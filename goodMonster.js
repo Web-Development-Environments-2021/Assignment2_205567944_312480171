@@ -54,5 +54,21 @@ function collapseGoodMonster(){
 	goodMonster.i = emptyCell[0];
 	goodMonster.j = emptyCell[1];
 	board[emptyCell[0]][emptyCell[1]] = 7; 
+}
 
+function dropGoodMonster() {
+	var emptyCell = findRandomEmptyCell(board);
+	board[goodMonster.i][goodMonster.j] = 0;
+	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
+
+	//delete good monster 
+	for (var i = 0; i < 10; i++) {
+		for (var j = 0; j < 10; j++) {
+			if (board[i][j]==6){
+				board[i][j] = 0;///delete madicine
+				break;
+			}
+		}
+	}	
+	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine	
 }

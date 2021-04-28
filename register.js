@@ -31,7 +31,6 @@ function login() {
 }
 function logout() {
     currentUser="";
-    // $("#footer").css("position", "absolute");
     document.getElementById("current_user").innerHTML = "Hello";
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
@@ -49,7 +48,6 @@ function logout() {
 
 function settingsWindow() {
 
-    // $("#footer").css("position", "relative");
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
     document.getElementById("game").style.display = "none";
@@ -64,7 +62,6 @@ function settingsWindow() {
 
 
 }
-
 
 function create_user() {
   let userNamee = document.getElementById("userName").value;
@@ -105,7 +102,6 @@ function authenticate() {
 
     let check_user=localStorage.getItem(userName)
     if(check_user!=null){
-        //let tt=check_user[3];
         let user_string=JSON.parse(check_user)
         let real_pass=user_string[0]["password"]
         if(password == real_pass){
@@ -152,7 +148,6 @@ $(document).ready(function() {
       },
       birth: {
           required: true,
-          //minlength: 4
       }
     },
     messages : {
@@ -178,10 +173,8 @@ $(document).ready(function() {
       },
       birth: {
           required:"Please choose your birth date",
-          //minlength:"Please choose your birth date"
       }
     },
-    ///create a new user if all fields are correct
     submitHandler: function(form){
       create_user();
     }
@@ -193,8 +186,6 @@ $(document).ready(function() {
       yearRange: "-20:+0"
       });
 });
-
-
 
 function empty(){
     document.getElementById("signup").style.display = "none";
@@ -242,8 +233,6 @@ function displayPlayAgainModal(){
   }
   })
 }
-
-
 
 function about(){
     // Get the modal

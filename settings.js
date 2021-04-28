@@ -13,62 +13,6 @@ function checkSetting(){
 
 }
 
-function updateKey(event, key) {
-    switch (key) {
-        case "up":
-            if(!(event.keyCode===downKey ||event.keyCode===leftKey||event.keyCode===rightKey)) {
-                upKey = event.keyCode;
-                $("#upB").text(event.keyCode);
-                $("#upButton").text(event);
-                $("#upButton").val(event.value);
-            }
-            else {
-                window.alert("Please Choose Other Key!");
-                $("#upButton").text("");
-            }
-            break;
-        case "down": 
-            if(!(event.keyCode===upKey ||event.keyCode===leftKey||event.keyCode===rightKey)) {
-                downKey = event.keyCode;
-                $("#downB").text(event.keyCode);
-                $("#downButton").text(event);
-                $("#downButton").val(event.value);
-            }
-            else {
-                window.alert("Please Choose Other Key!");
-                $("#downButton").text("");
-            }
-            break;
-        case "left": 
-            if(!(event.keyCode===downKey ||event.keyCode===upKey||event.keyCode===rightKey)) {
-                leftKey = event.keyCode;
-                $("#leftB").text(event.keyCode);
-                $("#leftButton").text(event);
-                $("#leftButton").val(event.value);
-
-            }
-            else {
-                window.alert("Please Choose Other Key!");
-                $("#leftButton").text("");
-            }
-            break;
-        case "right": 
-            if(!(event.keyCode===downKey ||event.keyCode===leftKey||event.keyCode===upKey)) {
-                rightKey =event.keyCode;
-                $("#rightB").text(event.keyCode);
-                $("#rightButton").text(event);
-                $("#rightButton").val(event.value);
-            }
-            else {
-                window.alert("Please Choose Other Key!");
-                $("#rightButton").text("");
-            }
-            break;
-    }
-    //we reach here only if all keys are OK
-}
-
-
 function changeTime(val) {
     //document.getElementById('timeInput').value=val;
     //document.getElementById('inGameTimeInput').value=val;
@@ -131,7 +75,6 @@ function randomSettings(){
     $("#25color").css("background-color", color3);
     $("#25color").val(color3);
 }
-
 
 function getRandomColor() {
     var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
